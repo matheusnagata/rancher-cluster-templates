@@ -65,7 +65,7 @@ nodepools:
   diskBus: virtio
   cpuCount: 4
   memorySize: 8
-  networkName: default/network-name-1
-  imageName: default/image-rand
+  networkName: default/vm-network
+  imageName: default/image-mfkhb
   vmNamespace: default
-  sshUser: ubuntu
+  sshUser: nagata
