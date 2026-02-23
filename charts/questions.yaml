@@ -1,3 +1,4 @@
+# ---> ORIGINAL
 questions:
 - variable: cluster.name
   default: mycluster
@@ -341,6 +342,29 @@ questions:
   description: "SSH username"
   show_if: cloudprovider=harvester
   group: "Nodepools"
+# <--- END ORIGINAL
+
+# ---> NEW: UI Text boxes for Cloud-Init data injection
+- variable: nodepools.0.userData
+  default: ""
+  description: "Paste your Cloud-Init User Data (YAML format) here."
+  type: multiline
+  required: false
+  label: Cloud-Init User Data
+  show_if: cloudprovider=harvester
+  group: "Nodepools"
+
+- variable: nodepools.0.networkData
+  default: ""
+  description: "Paste your Cloud-Init Network Data (YAML format) here."
+  type: multiline
+  required: false
+  label: Cloud-Init Network Data
+  show_if: cloudprovider=harvester
+  group: "Nodepools"
+# <--- END NEW
+
+# ---> ORIGINAL
 # DO
 - variable: nodepools.0.image
   label: "Image"
@@ -558,3 +582,4 @@ questions:
   description: "Azure Virtual Network name to connect the virtual machine (in [resourcegroup:]name format)"
   show_if: cloudprovider=azure
   group: "Nodepools"
+# <--- END ORIGINAL

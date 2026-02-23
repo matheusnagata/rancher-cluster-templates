@@ -1,3 +1,4 @@
+# ---> ORIGINAL
 {{- if eq .Values.cloudprovider "harvester" }}
 {{- range $index, $nodepool := .Values.nodepools }}
 apiVersion: rke-machine-config.cattle.io/v1
@@ -13,6 +14,23 @@ networkName: {{ $nodepool.networkName }}
 imageName: {{ $nodepool.imageName }}
 vmNamespace: {{ $nodepool.vmNamespace }}
 sshUser: {{ $nodepool.sshUser }}
+# <--- END ORIGINAL
+
+# ---> NEW: Injects user data if provided by the UI
+{{- if $nodepool.userData }}
+userData: |-
+{{ $nodepool.userData | nindent 2 }}
+{{- end }}
+# <--- END NEW
+
+# ---> NEW: Injects network data if provided by the UI
+{{- if $nodepool.networkData }}
+networkData: |-
+{{ $nodepool.networkData | nindent 2 }}
+{{- end }}
+# <--- END NEW
+
+# ---> ORIGINAL
 ---
 {{- end }}
 {{ $nodepool := .Values.nodepool }}
@@ -30,5 +48,23 @@ networkName: {{ $nodepool.networkName }}
 imageName: {{ $nodepool.imageName }}
 vmNamespace: {{ $nodepool.vmNamespace }}
 sshUser: {{ $nodepool.sshUser }}
+# <--- END ORIGINAL
+
+# ---> NEW: Replicates injection logic for the singular nodepool fallback
+{{- if $nodepool.userData }}
+userData: |-
+{{ $nodepool.userData | nindent 2 }}
+{{- end }}
+# <--- END NEW
+
+# ---> NEW: Replicates injection logic for the singular nodepool fallback
+{{- if $nodepool.networkData }}
+networkData: |-
+{{ $nodepool.networkData | nindent 2 }}
+{{- end }}
+# <--- END NEW
+
+# ---> ORIGINAL
 {{- end }}
 {{- end }}
+# <--- END ORIGINAL

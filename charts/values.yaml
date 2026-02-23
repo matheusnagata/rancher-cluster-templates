@@ -1,3 +1,4 @@
+# ---> ORIGINAL
 # cluster specific values
 cluster:
   # specify cluster name
@@ -106,3 +107,9 @@ nodepools:
   imageName: default/image-mfkhb
   vmNamespace: default
   sshUser: nagata
+# <--- END ORIGINAL
+
+  # ---> NEW: Empty placeholders to catch the UI input securely
+  userData: ""
+  networkData: ""
+  # <--- END NEW
